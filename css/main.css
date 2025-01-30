@@ -1,0 +1,313 @@
+html, body {
+    height: 100%;
+}
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #222222;
+    background: radial-gradient(circle, rgba(60,100,140,1) 0%, rgba(20,20,20,1) 100%);
+    margin: 0;
+    overflow: hidden;
+    color: #fff;
+}
+#webgl_container {
+    z-index: 10;
+    overflow: hidden;
+    background-color: lightpink; /* Set the background color to light pink */
+    background: url('brain.png') no-repeat center center;
+    background-size: cover;
+    opacity: 0.5; /* Set the transparency to 50% */
+}
+#canvasContainer {
+    z-index: 50;
+    opacity: 0.8;
+    width: 292px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    padding: 10px;
+    background: rgba(30,35,40,0.8);
+    border-radius: 10px;
+    transition: opacity 0.5s ease;
+}
+#canvasContainer:hover {
+    opacity: 1;
+}
+#canvasContainerRight {
+    z-index: 50;
+    opacity: 0.8;
+    width: 292px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 10px;
+    background: rgba(30,35,40,0.8);
+    border-radius: 10px;
+    transition: opacity 0.5s ease;
+}
+#canvasContainerRight:hover {
+    opacity: 1;
+}
+.drawingOutput {
+    display: block;
+}
+.board {
+    width: 282px;
+    height: 361px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    background: #fff;
+}
+.tinyBoard {
+    margin: 0 auto;
+    background-color: #000;
+    width: 28px;
+    height: 28px;
+    border: solid thin #ccc;
+    overflow: hidden;
+    float: right;
+}
+.instructions {
+    color: #fff;
+    font-size: 24px;
+    text-align: left;
+    padding: 5px 0;
+}
+.small_instr {
+    font-size: 12px;
+}
+.info {
+    color: #abc;
+    font-size: 18px;
+    text-align: right;
+    float: left;
+    height: 37px;
+    width: 247px;
+    line-height: 30px;
+    margin-right: 5px;
+}
+.ans {
+    font-size: 24px;
+    color: #fff;
+    margin: 0 auto;
+    background-color: #000;
+    width: 28px;
+    height: 28px;
+    border: solid thin #ccc;
+    float: right;
+    text-align: center;
+}
+#infobox {
+    width: 300px;
+    position: absolute;
+    bottom: 100px;
+    left: 100px;
+    background-color: rgba(222, 239, 255, 0.9);
+    border-radius: 10px;
+    padding: 10px;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    border: thin solid white;
+    user-select: none;
+}
+#nodeType {
+    font-weight: bold;
+    text-align: center;
+    background-color: #def;
+    padding: 5px;
+    border-radius: 10px 10px 0 0;
+}
+#imageInputContainer {
+    background-color: #000;
+    overflow: hidden;
+    text-align: center;
+    border-radius: 10px;
+}
+#nodeInputContainer {
+    background-color: #bcd;
+    padding: 5px;
+    border-radius: 10px;
+}
+#calcContainer {
+    background-color: #9ab;
+    padding: 5px;
+    border-radius: 10px;
+}
+#nodeOutputContainer {
+    background-color: #789;
+    padding: 5px;
+    border-radius: 10px;
+}
+.label {
+    float: left;
+    margin-right: 5px;
+}
+.math {
+}
+#imageLabel {
+    position: absolute;
+    padding: 5px;
+    color: #fff;
+    text-shadow: 1px 1px #000;
+}
+#filterLabel {
+    position: absolute;
+    color: #fff;
+    padding: 5px;
+    text-shadow: 1px 1px #000;
+}
+#drawingInterface {
+    padding: 5px;
+    margin-bottom: 5px;
+    background: rgba(30,35,40,0.8);
+    border-radius: 10px;
+}
+#filterInterface {
+    padding: 5px;
+    font-size: 20px;
+    color: #abc;
+    background: rgba(30,35,40,0.8);
+    border-radius: 10px;
+}
+.settings {
+    display: table;
+    width: 100%;
+}
+.row {
+    display: table-row;
+}
+.cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+.settings .question,
+.settings .switch {
+    display: table-cell;
+    vertical-align: middle;
+    padding-bottom: 5px;
+    width: 100%;
+}
+.settings .question {
+    font-size: 18px;
+}
+input.cmn-toggle-yes-no + label {
+    width: 80px;
+    height: 35px;
+}
+input.cmn-toggle-yes-no + label:before, input.cmn-toggle-yes-no + label:after {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    line-height: 35px;
+}
+input.cmn-toggle-yes-no + label:before {
+    background-color: rgb(40,50,60);
+    content: attr(data-off);
+    transition: transform 0.5s;
+    backface-visibility: hidden;
+}
+input.cmn-toggle-yes-no + label:after {
+    background-color: #333333;
+    content: attr(data-on);
+    transition: transform 0.5s;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+}
+input.cmn-toggle-yes-no:checked + label:before {
+    transform: rotateY(180deg);
+}
+input.cmn-toggle-yes-no:checked + label:after {
+    transform: rotateY(0);
+}
+.cmn-toggle {
+    position: absolute;
+    margin-left: -9999px;
+    visibility: hidden;
+}
+.cmn-toggle + label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+}
+::-moz-selection {
+    color: #FFFFFF;
+    background: #990033;
+}
+::selection {
+    color: #FFFFFF;
+    background: #990033;
+}
+#filterImage {
+    overflow: hidden;
+}
+#inputImage {
+    overflow: hidden;
+}
+#linkback {
+    position: absolute;
+    bottom: 0;
+    right: 0px;
+    text-align: right;
+    color: #fff;
+    background: rgba(10,15,20,0.8);
+    opacity: 0.5;
+    padding: 5px;
+    border-radius: 10px 0 0 0;
+}
+a {
+    color: #06c;
+}
+#digitInputContainer {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(30,35,40,0.8);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+#digitInputContainer button {
+    background: #444;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+#digitInputContainer button:hover {
+    background: #666;
+}
+#filterLayerControls {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(30,35,40,0.8);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+#filterLayerControls div {
+    margin: 10px 0;
+}
+#filterLayerControls label {
+    color: #fff;
+    margin-right: 10px;
+}
+#filterLayerControls input[type="range"] {
+    width: 200px;
+}
+#filterLayerControls span {
+    color: #fff;
+    margin-left: 10px;
+}
